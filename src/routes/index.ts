@@ -1,9 +1,6 @@
-// Pages
-import { Home, Following, Profile, Upload, Search } from '../pages';
-
-// Layouts
-import { HeaderOnly } from '../components/Layout';
-import { ExoticComponent, ReactNode } from 'react';
+import { ReactNode } from 'react';
+import { HeaderOnly } from '../components/Layouts';
+import { Following, Home, Profile, Search, Upload } from '../pages';
 
 interface Props {
   children: ReactNode;
