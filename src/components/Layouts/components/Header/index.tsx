@@ -1,32 +1,30 @@
+import React from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import {
   faCircleQuestion,
-  faCircleXmark,
   faCoins,
   faEarthAsia,
   faEllipsisVertical,
   faGear,
   faKeyboard,
-  faMagnifyingGlass,
   faSignOut,
-  faSpinner,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
+
 import images from '../../../../assets/images';
-import AccountItem from '../../../AccountItem';
 import Button from '../../../Button';
 import { InboxIcon, MessageIcon, UploadIcon } from '../../../Icons';
 import Image from '../../../Image';
-import { Wrapper as PopperWrapper } from '../../../Popper';
 import Menu from '../../../Popper/Menu';
 import { MenuItemInterface } from '../../../Popper/Menu/MenuItem';
+import Search from '../Search';
 import styles from './Header.module.scss';
+import configRoutes from '../../../../config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -37,6 +35,76 @@ const MENU_ITEMS = [
     children: {
       title: 'Languages',
       data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vn',
+          title: 'Viet Nam',
+        },
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vn',
+          title: 'Viet Nam',
+        },
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vn',
+          title: 'Viet Nam',
+        },
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vn',
+          title: 'Viet Nam',
+        },
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vn',
+          title: 'Viet Nam',
+        },
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vn',
+          title: 'Viet Nam',
+        },
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vn',
+          title: 'Viet Nam',
+        },
         {
           type: 'language',
           code: 'en',
@@ -90,50 +158,17 @@ const USER_MENU = [
 const currentUser = true;
 
 const Header = () => {
-  const [searchResults, setSearchResults] = useState([1]);
-
   const handleMenuChange = (item: MenuItemInterface) => {
     console.log(item);
   };
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <img src={images.logo} alt="Tiktok" />
-        <HeadlessTippy
-          interactive={true}
-          visible={false}
-          render={(attrs) => (
-            <div className={cx('search-result')} tabIndex={-1} {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx('search-title')}>Accounts</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
+        <Link to={configRoutes.home}>
+          <img src={images.logo} alt="Tiktok" />
+        </Link>
 
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input
-              type="text"
-              placeholder="Search accounts and videos"
-              spellCheck="false"
-            />
-            <button className={cx('clear')}>
-              <FontAwesomeIcon icon={faCircleXmark as IconProp} />
-            </button>
-            <FontAwesomeIcon
-              className={cx('loading')}
-              icon={faSpinner as IconProp}
-            />
-            <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass as IconProp} />
-            </button>
-          </div>
-        </HeadlessTippy>
+        <Search />
 
         <div className={cx('actions')}>
           {currentUser ? (

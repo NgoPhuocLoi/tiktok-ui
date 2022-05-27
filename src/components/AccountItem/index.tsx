@@ -1,30 +1,29 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './AccountItem.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import images from '../../assets/images';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames/bind';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Result } from '../Layouts/components/Search';
+import styles from './AccountItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-const AccountItem = () => {
+const AccountItem: React.FC<{ data: Result }> = ({ data }) => {
+  const navigate = useNavigate();
+  const { full_name, avatar, nickname } = data;
   return (
-    <div className={cx('wrapper')}>
-      <img
-        className={cx('avatar')}
-        src="https://www.w3schools.com/howto/img_avatar.png"
-        alt="Avatar"
-      />
+    <div className={cx('wrapper')} onClick={() => navigate(`/@${nickname}`)}>
+      <img className={cx('avatar')} src={avatar} alt={full_name} />
       <div className={cx('info')}>
         <h4 className={cx('name')}>
-          <span>Ngo Phuoc Loi</span>
+          <span>{full_name}</span>
           <FontAwesomeIcon
             className={cx('check')}
             icon={faCheckCircle as IconProp}
           />
         </h4>
-        <span className={cx('username')}>phuocloi2511</span>
+        <span className={cx('username')}>{nickname}</span>
       </div>
     </div>
   );

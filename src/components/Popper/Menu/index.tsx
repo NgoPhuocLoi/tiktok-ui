@@ -1,6 +1,7 @@
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import React, { JSXElementConstructor, ReactElement, useState } from 'react';
+
 import { Wrapper as PopperWrapper } from '../index';
 import Header from './Header';
 import styles from './Menu.module.scss';
@@ -12,6 +13,7 @@ interface MenuProps {
   items: MenuItemInterface[];
   children: ReactElement<any, string | JSXElementConstructor<any>>;
   onChange: (item: MenuItemInterface) => void;
+  hideOnCLick?: boolean;
 }
 
 interface History {
@@ -19,7 +21,12 @@ interface History {
   data: MenuItemInterface[];
 }
 
-const Menu: React.FC<MenuProps> = ({ children, items, onChange }) => {
+const Menu: React.FC<MenuProps> = ({
+  children,
+  items,
+  onChange,
+  hideOnCLick = false,
+}) => {
   const [history, setHistory] = useState<History[]>([{ data: items }]);
   const current = history[history.length - 1];
   const renderItems = () => {
@@ -49,6 +56,7 @@ const Menu: React.FC<MenuProps> = ({ children, items, onChange }) => {
       interactive={true}
       delay={[0, 500]}
       offset={[12, 8]}
+      hideOnClick={hideOnCLick}
       placement="bottom-end"
       render={(attrs) => (
         <div className={cx('menu-list')} tabIndex={-1} {...attrs}>
@@ -61,7 +69,7 @@ const Menu: React.FC<MenuProps> = ({ children, items, onChange }) => {
                 }}
               />
             )}
-            {renderItems()}
+            <div className={cx('menu-body')}>{renderItems()}</div>
           </PopperWrapper>
         </div>
       )}
