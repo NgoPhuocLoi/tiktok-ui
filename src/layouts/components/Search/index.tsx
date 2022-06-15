@@ -11,12 +11,12 @@ import React, {
   useState,
 } from 'react';
 
-import * as searchServices from '../../../../apiServices/searchServices';
-import { useDebounce } from '../../../../hooks';
+import * as searchService from '../../../services/searchService';
+import { useDebounce } from '../../../hooks';
 import 'tippy.js/dist/tippy.css';
-import AccountItem from '../../../AccountItem';
-import { SearchIcon, SpinnerIcon } from '../../../Icons';
-import { Wrapper as PopperWrapper } from '../../../Popper';
+import AccountItem from '../../../components/AccountItem';
+import { SearchIcon, SpinnerIcon } from '../../../components/Icons';
+import { Wrapper as PopperWrapper } from '../../../components/Popper';
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
@@ -59,7 +59,7 @@ const Search = () => {
     const fetchData = async () => {
       setLoading(true);
 
-      const searchResult = await searchServices.search(debouncedValue);
+      const searchResult = await searchService.search(debouncedValue);
 
       setSearchResults(searchResult);
       setLoading(false);
@@ -88,12 +88,12 @@ const Search = () => {
     <div>
       <HeadlessTippy
         interactive={true}
-        visible={showResult && searchResults.length > 0}
+        visible={showResult && searchResults?.length > 0}
         render={(attrs) => (
           <div className={cx('search-result')} tabIndex={-1} {...attrs}>
             <PopperWrapper>
               <h4 className={cx('search-title')}>Accounts</h4>
-              {searchResults.map((result) => (
+              {searchResults?.map((result) => (
                 <AccountItem key={result.id} data={result} />
               ))}
             </PopperWrapper>

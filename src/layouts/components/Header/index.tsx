@@ -16,15 +16,15 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 
-import images from '../../../../assets/images';
-import Button from '../../../Button';
-import { InboxIcon, MessageIcon, UploadIcon } from '../../../Icons';
-import Image from '../../../Image';
-import Menu from '../../../Popper/Menu';
-import { MenuItemInterface } from '../../../Popper/Menu/MenuItem';
+import images from '../../../assets/images';
+import Button from '../../../components/Button';
+import { InboxIcon, MessageIcon, UploadIcon } from '../../../components/Icons';
+import Image from '../../../components/Image';
+import Menu from '../../../components/Popper/Menu';
+import { MenuItemInterface } from '../../../components/Popper/Menu/MenuItem';
 import Search from '../Search';
 import styles from './Header.module.scss';
-import configRoutes from '../../../../config/routes';
+import config from '../../../config';
 
 const cx = classNames.bind(styles);
 
@@ -164,7 +164,7 @@ const Header = () => {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <Link to={configRoutes.home}>
+        <Link to={config.routes.home}>
           <img src={images.logo} alt="Tiktok" />
         </Link>
 

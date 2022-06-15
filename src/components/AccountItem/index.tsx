@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Result } from '../Layouts/components/Search';
+import { Result } from '../../layouts/components/Search';
 import styles from './AccountItem.module.scss';
 
 const cx = classNames.bind(styles);
