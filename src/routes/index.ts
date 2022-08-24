@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import config from '../config';
 import { HeaderOnly } from '../layouts';
-import { Following, Home, Profile, Search, Upload } from '../pages';
+import { Following, Home, Live, Profile, Search, Upload } from '../pages';
 
 interface Props {
   children: ReactNode;
@@ -21,6 +21,7 @@ const publicRoutes: Route[] = [
   { path: config.routes.profile, component: Profile },
   { path: config.routes.upload, component: Upload, layout: HeaderOnly },
   { path: config.routes.search, component: Search, layout: null },
+  { path: config.routes.live, component: Live },
 ];
 
 const privateRoutes: Route[] = [];
